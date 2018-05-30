@@ -11,7 +11,7 @@ const getEmails = (people, options) => {
     let result = ''
 
     if (withNames) {
-      result = person.name + ' <' + person.email + '>'
+      result = `${person.name} <${person.email}>`
     } else {
       result = person.email
     }
@@ -30,13 +30,13 @@ const getAddresses = (people, options) => {
 
   return people.map(person => {
     let address = person.address
-    let fullAddress = person.name + '\n' + address.line1 + '\n'
+    let fullAddress = `${person.name}\n${address.line1}\n`
 
     if (address.line2) {
-      fullAddress += address.line2 + '\n'
+      fullAddress += `${address.line2}\n`
     }
 
-    fullAddress += address.city + ', ' + address.state
+    fullAddress += `${address.city}, ${address.state}`
     return fullAddress
   }).join('\n\n')
 }
