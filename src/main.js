@@ -50,7 +50,7 @@ const getYoungest = people => {
   }
 }
 
-const isActive = person => person.isActive;
+const isActive = person => person.isActive
 
 module.exports = {
   getEmails: getEmails,
