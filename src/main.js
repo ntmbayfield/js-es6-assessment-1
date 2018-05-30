@@ -1,4 +1,4 @@
-function getEmails (people, options) {
+const getEmails = (people, options) => {
   options = options || {}
   let withNames = options.withNames || false
   let onlyActive = options.onlyActive || false
@@ -7,7 +7,7 @@ function getEmails (people, options) {
     people = people.filter(isActive)
   }
 
-  return people.map(function (person) {
+  return people.map(person => {
     let result = ''
 
     if (withNames) {
@@ -20,7 +20,7 @@ function getEmails (people, options) {
   }).join(', ')
 }
 
-function getAddresses (people, options) {
+const getAddresses = (people, options) => {
   options = options || {}
   let onlyActive = options.onlyActive || false
 
@@ -28,7 +28,7 @@ function getAddresses (people, options) {
     people = people.filter(isActive)
   }
 
-  return people.map(function (person) {
+  return people.map(person => {
     let address = person.address
     let fullAddress = person.name + '\n' + address.line1 + '\n'
 
@@ -41,8 +41,8 @@ function getAddresses (people, options) {
   }).join('\n\n')
 }
 
-function getYoungest (people) {
-  people.sort(function (personA, personB) {
+const getYoungest = people => {
+  people.sort((personA, personB) => {
     return personA.age - personB.age
   })
 
@@ -52,9 +52,7 @@ function getYoungest (people) {
   }
 }
 
-function isActive (person) {
-  return person.isActive
-}
+const isActive = person => person.isActive;
 
 module.exports = {
   getEmails: getEmails,
