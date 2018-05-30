@@ -1,7 +1,6 @@
-const getEmails = (people, options) => {
-  options = options || {}
-  let withNames = options.withNames || false
-  let onlyActive = options.onlyActive || false
+const getEmails = (people, options = {withNames: false, onlyActive: false}) => {
+  let withNames = options.withNames
+  let onlyActive = options.onlyActive
 
   if (onlyActive) {
     people = people.filter(isActive)
@@ -20,9 +19,8 @@ const getEmails = (people, options) => {
   }).join(', ')
 }
 
-const getAddresses = (people, options) => {
-  options = options || {}
-  let onlyActive = options.onlyActive || false
+const getAddresses = (people, options = {onlyActive: false}) => {
+  let onlyActive = options.onlyActive
 
   if (onlyActive) {
     people = people.filter(isActive)
