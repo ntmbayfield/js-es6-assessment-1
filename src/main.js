@@ -1,14 +1,14 @@
 function getEmails (people, options) {
   options = options || {}
-  var withNames = options.withNames || false
-  var onlyActive = options.onlyActive || false
+  let withNames = options.withNames || false
+  let onlyActive = options.onlyActive || false
 
   if (onlyActive) {
     people = people.filter(isActive)
   }
 
   return people.map(function (person) {
-    var result = ''
+    let result = ''
 
     if (withNames) {
       result = person.name + ' <' + person.email + '>'
@@ -22,15 +22,15 @@ function getEmails (people, options) {
 
 function getAddresses (people, options) {
   options = options || {}
-  var onlyActive = options.onlyActive || false
+  let onlyActive = options.onlyActive || false
 
   if (onlyActive) {
     people = people.filter(isActive)
   }
 
   return people.map(function (person) {
-    var address = person.address
-    var fullAddress = person.name + '\n' + address.line1 + '\n'
+    let address = person.address
+    let fullAddress = person.name + '\n' + address.line1 + '\n'
 
     if (address.line2) {
       fullAddress += address.line2 + '\n'
