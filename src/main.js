@@ -42,9 +42,7 @@ const getAddresses = (people, options) => {
 }
 
 const getYoungest = people => {
-  people.sort((personA, personB) => {
-    return personA.age - personB.age
-  })
+  people.sort((personA, personB) => personA.age - personB.age)
 
   return {
     youngest: people[0],
