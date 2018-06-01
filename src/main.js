@@ -1,17 +1,20 @@
-function getEmails (people, options) {
-  options = options || {}
-  let withNames = options.withNames || false
-  let onlyActive = options.onlyActive || false
+//FUNCTION getEmails(people, options) {
+//const getEmails = (people, options={}) => {
+const getEmails = (people, {withNames = false, onlyActive = false}={}) => {
+// options = options || {}
+// let withNames = options.withNames || false
+// let onlyActive = options.onlyActive || false
 
   if (onlyActive) {
     people = people.filter(isActive)
   }
 
-  return people.map(function (person) {
+//  return people.map(FUNCTION(person) {
+  return people.map(person => {
     let result = ''
 
     if (withNames) {
-      result = person.name + ' <' + person.email + '>'
+      result = `${person.name} <${person.email}>`
     } else {
       result = person.email
     }
@@ -20,30 +23,38 @@ function getEmails (people, options) {
   }).join(', ')
 }
 
-function getAddresses (people, options) {
-  options = options || {}
-  let onlyActive = options.onlyActive || false
+//FUNCTION getAddresses (people, options) {
+//const getAddresses = (people, options) => {
+//const getAddresses = (people, options={}) => {
+const getAddresses = (people, {onlyActive = false} = {}) => {
+//  options = options || {}
+//  let onlyActive = options.onlyActive || false
 
   if (onlyActive) {
     people = people.filter(isActive)
   }
 
-  return people.map(function (person) {
+//  return people.map(FUNCTION (person) {
+  return people.map(person => {
     let address = person.address
-    let fullAddress = person.name + '\n' + address.line1 + '\n'
+//  let fullAddress = person.name PLUS '\n' PLUS address.line1 PLUS '\n'
+    let fullAddress = `${person.name}\n${address.line1}\n`
 
     if (address.line2) {
-      fullAddress += address.line2 + '\n'
+//    fullAddress PLUS= address.line2 PLUS '\n'
+      fullAddress = fullAddress.concat(`${address.line2}\n`)
     }
 
-    fullAddress += address.city + ', ' + address.state
+//  fullAddress PLUS= address.city PLUS ', ' PLUS address.state
+    fullAddress = fullAddress.concat(`${address.city}, ${address.state}`)
     return fullAddress
   }).join('\n\n')
 }
 
-function getYoungest (people) {
-  people.sort(function (personA, personB) {
-    return personA.age - personB.age
+//FUNCTION getYoungest (people) {
+const getYoungest = people => {
+  people.sort((personA, personB) => {
+    return personA.age - personB.ages
   })
 
   return {
@@ -52,9 +63,11 @@ function getYoungest (people) {
   }
 }
 
-function isActive (person) {
-  return person.isActive
-}
+
+// FUNCTION isActive(person) {
+//   return person.isActive
+// }
+const isActive = person => person.isActive;
 
 module.exports = {
   getEmails: getEmails,
